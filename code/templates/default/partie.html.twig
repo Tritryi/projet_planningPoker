@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Partie lancée
+{% endblock %}
+
+{% block body %}
+    <main class="table-container">
+
+        <!-- 1. Zone de la table avec tous les joueurs -->
+        <section class="joueurs-section">
+            <h2>Participants</h2>
+            <div class="joueurs-liste">
+                {% for j in joueurs %}
+                    <div class="badge-joueur">{{ j }}</div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- 2. Indicateur de tour -->
+        <section class="tour-section">
+            <p class="tour-label">C'est le tour de :</p>
+            <div class="joueur-actif">{{ joueurs|first }}</div>
+        </section>
+
+        <!-- 3. Cartes de vote (Planning Poker standard) -->
+        <section id="cartes-section" data-joueurs="{{ joueurs|json_encode }}">
+            <h3>Choisissez une estimation</h3>
+            <div class="deck">
+                {% set valeurs = [0, 1, 2, 3, 5, 8, 13, 20, 40, 100, '?', '☕'] %}
+                {% for val in valeurs %}
+                    <button type="button" class="carte">{{ val }}</button>
+                {% endfor %}
+            </div>
+        </section>
+
+    </main>
+    <script>
+        // récupère les joueurs, de quoi stocker leur votes et les zones html
+        let indexJ = 0;
+        const votes = {};
+        const voteArea = document.getElementById("cartes-section");
+        const joueurs = JSON.parse(voteArea.dataset.joueurs);
+        const joueurActuel = document.querySelector('.joueur-actif');
+
+        document.querySelectorAll(".carte").forEach(carte => {
+            carte.addEventListener("click", (event) => {
+                // enregistrement du score du joueur Y
+                const j = joueurs[indexJ];
+                const score = event.currentTarget.textContent.trim();
+
+                votes[j] = score;
+
+                indexJ++;
+                // il reste des joueurs, on affiche le prochain
+                if (indexJ < joueurs.length) {
+                    joueurActuel.textContent = joueurs[indexJ];
+                }
+                // plus de joueurs, fin du jeu
+                else {
+                    voteArea.style.display = "none";
+                    console.log("Fin de la tâche X, votes enregistrés :", votes);
+                }
+            });
+        });
+    </script>
+{% endblock %}
