@@ -1,21 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DefaultController!{% endblock %}
+{% block title %}Planning Poker{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="poker-wrapper">
+        <h1>Nouvelle Partie de Planning Poker</h1>
 
-<div class="example-wrapper">
-    <h1>HELLO WORLD FROM RENDU R0</h1>
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <form method="POST" action="{{ path('app_partie_creer') }}">
+            <div class="form-group">
+                <label for="nb_joueurs">Nombre de participants :</label>
+                <select id="nb_joueurs" class="form-control">
+                    <option value="" disabled selected>Choisir...</option>
+                    <option value="2">2 joueurs</option>
+                    <option value="3">3 joueurs</option>
+                    <option value="4">4 joueurs</option>
+                    <option value="5">5 joueurs</option>
+                    <option value="6">6 joueurs</option>
+                </select>
+            </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/home/tritri/Documents/Agile/projet_planningPoker/code/src/Controller/DefaultController.php</code></li>
-        <li>Your template at <code>/home/tritri/Documents/Agile/projet_planningPoker/code/templates/default/index.html.twig</code></li>
-    </ul>
-</div>
+            <div id="liste_champs_joueurs" class="form-group">
+                <!-- Les champs texte s'insèrent ici dynamiquement -->
+            </div>
+
+            <button type="submit" class="btn-submit" id="btn_lancer" style="display: none;">
+                Lancer la partie
+            </button>
+        </form>
+    </div>
+
+    <script>
+        // sélection des élements HTML.
+        const selectNb = document.getElementById('nb_joueurs');
+        const container = document.getElementById('liste_champs_joueurs');
+        const btnLancer = document.getElementById('btn_lancer');
+
+        selectNb.addEventListener('change', function () {
+            // Initialisation de la zone d'input
+            const total = parseInt(this.value, 10);
+            container.innerHTML = '<label>Noms des joueurs :</label>';
+
+            // création des inputs
+            // joueurs[] permet à php de créer automatiquement un tableau
+            for (let i = 1; i <= total; i++) {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.name = 'joueurs[]';
+                input.placeholder = 'Joueur ' + i;
+                input.required = true;
+                input.className = 'form-control player-field';
+                container.appendChild(input);
+            }
+
+            btnLancer.style.display = 'block';
+        });
+    </script>
 {% endblock %}

@@ -5,9 +5,9 @@
 
 ## Outils utilisés (à remplir une fois)
 
-| Outil | Modèle (si connu) | Mode (autocomplétion, chat, agent) |
-|---|---|---|
-| | | |
+| Outil  | Modèle (si connu) | Mode (autocomplétion, chat, agent) |
+|--------|---|------------------------------------|
+| Gemini | | Chat                               |
 
 Fichier d'instructions pour agent versionné (`CLAUDE.md`, `AGENTS.md`...) : <oui : chemin / non>
 
@@ -15,12 +15,11 @@ Fichier d'instructions pour agent versionné (`CLAUDE.md`, `AGENTS.md`...) : <ou
 
 ### AAAA-MM-JJ : <tâche en une ligne> (US-xx)
 
-- **Demande (résumé fidèle)** : <ce que vous avez demandé, avec le contexte fourni : fichiers, tests...>
-- **Résultat** : <accepté tel quel / modifié / rejeté>
-- **Ce que nous avons vérifié** : <tests lancés, lecture ligne à ligne, essai manuel...>
-- **Ce que nous avons changé ou rejeté, et pourquoi** :
-
-### AAAA-MM-JJ : ...
+### 2026-11-02 
+- **Demande (résumé fidèle)** : US-01 : Génération du code HTML/CSS, contexte fourni : code du controlleur pour qu'il sache le nom des variables à afficher
+- **Résultat** : Accepté
+- **Ce que nous avons vérifié** : Vérification visuelle et bon fonctionnement des éventuels boutons
+- **Ce que nous avons changé ou rejeté, et pourquoi** : Rien, nous préferions nous concentrer sur l'écriture du backend et laisser le front à l'IA n'étant pas très doué pour les beaux visuels.
 
 ## Bilan (à compléter en séance 4, 3 lignes)
 

@@ -1,0 +1,101 @@
+.table-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    font-family: system-ui, -apple-system, sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+/* 1. Zone joueurs */
+.joueurs-section {
+    width: 100%;
+    text-align: center;
+}
+
+.joueurs-section h2 {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.joueurs-liste {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.badge-joueur {
+    background-color: #e9ecef;
+    border: 2px solid #ced4da;
+    border-radius: 20px;
+    padding: 0.4rem 1rem;
+    font-weight: 600;
+    color: #495057;
+}
+
+/* 2. Indicateur de tour */
+.tour-section {
+    background: #f8f9fa;
+    border: 2px dashed #0d6efd;
+    border-radius: 12px;
+    padding: 1.25rem 2.5rem;
+    text-align: center;
+}
+
+.tour-label {
+    margin: 0;
+    color: #6c757d;
+    font-size: 0.95rem;
+}
+
+.joueur-actif {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #0d6efd;
+    margin-top: 0.25rem;
+}
+
+/* 3. Zone des cartes */
+#cartes-section {
+    width: 100%;
+    text-align: center;
+}
+
+#cartes-section h3 {
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 1rem;
+}
+
+.deck {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.carte {
+    width: 55px;
+    height: 80px;
+    background: #ffffff;
+    border: 2px solid #0d6efd;
+    border-radius: 8px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0d6efd;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.1s ease, background-color 0.1s ease;
+}
+
+.carte:hover {
+    transform: translateY(-4px);
+    background-color: #0d6efd;
+    color: #ffffff;
+}
