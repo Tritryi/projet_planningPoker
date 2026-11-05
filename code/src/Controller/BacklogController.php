@@ -25,13 +25,35 @@ final class BacklogController extends AbstractController
     {
         $session = $request->getSession();
 
-        //return dd($request);
-        //return dd($serialiser->deserialize(file_get_contents($request->files->get("file")), Backlog::class, "json"));
-        $session->set('backlog', $serialiser->deserialize(file_get_contents($request->files->get("file")), Backlog::class, "json"));
+        try {
+            $backlog = $serialiser->deserialize(file_get_contents($request->files->get("file")), Backlog::class, "json");
 
-        
+            if($this->checkBacklogValidity($backlog)){
+                $session->set('backlog', $backlog);
+            }
+            else{
+                $session->set('error', "Backlog incorrect, veuillez vérifier les champs");
+            }
+            
+        } catch (\Throwable $th) {
+            $session->set('error', "Veuillez entrer un fichier JSON correct");
+        }
+
         return $this->render('backlog/index.html.twig', [
             'controller_name' => 'BacklogController',
         ]);
+    }
+
+    private function checkBacklogValidity($backlog){
+        if(!$backlog->nomProjet){
+            return false;
+        }
+        foreach ($backlog->fonctionnalites as $fonctionnalite) {
+            if($fonctionnalite->id == null)
+                return false;
+            if($fonctionnalite->titre == null || $fonctionnalite->titre == "")
+                return false;
+        }
+            return true;
     }
 }

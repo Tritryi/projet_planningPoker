@@ -1,0 +1,7 @@
+{
+  "nomProjet": "Bibliothèque en ligne",
+  "fonctionnalites": [
+    { "id": 1, "titre": "" },
+    { "titre": "Emprunter un livre disponible" }
+  ]
+}

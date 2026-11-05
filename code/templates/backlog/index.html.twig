@@ -24,6 +24,11 @@
         <p> {{backlog.fonctionnalites[0].titre}} </p>
     {% endif %}
 
+    {% if app.session.get('error') %}
+        <p> Error detected </p>
+        <p> {{app.session.get('error')}} </p>
+    {% endif %}
+
     <form action="http://127.0.0.1:8000/backlog/load" method="post" enctype="multipart/form-data">
         <input type="file" name="file" accept=".json">
         <input type="submit" name="button" value="INSCRIPTION">
