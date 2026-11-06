@@ -7,6 +7,11 @@
 {% block body %}
     <main class="table-container">
 
+        <div>
+            <h1>{{backlog.nomProjet}}</h1>
+            <h3>{{backlog.fonctionnalites[0].id}} : {{backlog.fonctionnalites[0].titre}}</h3>
+        </div>
+
         <!-- 1. Zone de la table avec tous les joueurs -->
         <section class="joueurs-section">
             <h2>Participants</h2>

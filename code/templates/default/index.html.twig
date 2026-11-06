@@ -6,8 +6,10 @@
     <div class="poker-wrapper">
         <h1>Nouvelle Partie de Planning Poker</h1>
 
-        <form method="POST" action="{{ path('app_partie_creer') }}">
+        <form method="POST" action="{{ path('app_partie_creer') }}" enctype="multipart/form-data">
             <div class="form-group">
+                <label for="backlog">Importer un backlog :</label>
+                <input id="backlog" type="file" name="file" accept=".json" required>
                 <label for="nb_joueurs">Nombre de participants :</label>
                 <select id="nb_joueurs" class="form-control">
                     <option value="" disabled selected>Choisir...</option>
@@ -27,23 +29,27 @@
                 Lancer la partie
             </button>
         </form>
+
+        {% if app.session.get('error') %}
+            <p> {{app.session.get('error')}} </p>
+        {% endif %}
     </div>
 
     <script>
         // sélection des élements HTML.
-        const selectNb = document.getElementById('nb_joueurs');
-        const container = document.getElementById('liste_champs_joueurs');
-        const btnLancer = document.getElementById('btn_lancer');
+        selectNb = document.getElementById('nb_joueurs');
+        container = document.getElementById('liste_champs_joueurs');
+        btnLancer = document.getElementById('btn_lancer');
 
         selectNb.addEventListener('change', function () {
             // Initialisation de la zone d'input
-            const total = parseInt(this.value, 10);
+            total = parseInt(this.value, 10);
             container.innerHTML = '<label>Noms des joueurs :</label>';
 
             // création des inputs
             // joueurs[] permet à php de créer automatiquement un tableau
             for (let i = 1; i <= total; i++) {
-                const input = document.createElement('input');
+                input = document.createElement('input');
                 input.type = 'text';
                 input.name = 'joueurs[]';
                 input.placeholder = 'Joueur ' + i;

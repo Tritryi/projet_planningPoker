@@ -6,5 +6,7 @@ Suivre ces 3 commandes suffit à voir le "Hello world" et lancer un test qui fon
 ```
 git clone git@github.com:Tritryi/projet_planningPoker.git
 
-scripts/buildapp.sh
+scripts/buildapp.sh // Sur Linux
+
+.\scripts\buildapp.bat // Sur Windows
 ```
