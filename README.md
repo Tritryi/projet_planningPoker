@@ -1,3 +1,4 @@
+![example workflow](https://github.com/Tritryi/projet_planningPoker/actions/workflows/ci.yaml/badge.svg)
 # projet_planningPoker
 Repository pour le projet d'application de planning poker du cours de Conception de Projets Agiles.
 
@@ -10,6 +11,3 @@ scripts/buildapp.sh // Sur Linux
 
 .\scripts\buildapp.bat // Sur Windows
 ```
-
-# Statut Workflow
-![example workflow](https://github.com/Tritryi/projet_planningPoker/actions/workflows/ci.yaml/badge.svg)
