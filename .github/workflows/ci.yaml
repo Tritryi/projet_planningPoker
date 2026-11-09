@@ -1,0 +1,32 @@
+name: ci
+on:
+    # définition des actions qui trigger les tests et les branches associées
+    push:
+        branches: [main, test]
+    pull_request:
+        branches: [main]
+# permissions nécessaires de l'utilisateur pour déclencher des tests
+permissions:
+    contents: read
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                # change le dossier d'éxecution des commandes
+                working-directory: ./code
+        steps:
+            # instruction permettant de cloner le dépot sur la machine de test
+            - uses: actions/checkout@v4
+            # permet d'installer php en précisant sa version, ses extensions et désactive la couverture de code (comme pour des stats)
+            - uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '8.4'
+                  extensions: mbstring, xml, ctype, iconv, intl
+                  coverage: none
+            # installe les package nécessaires pour un projet symfony, installe des version light et sans interaction utilisateur
+            - run: composer install --prefer-dist --no-progress --no-interaction
+
+            # lance les tests avec les commandes phpunit par défaut
+            - name: Lancement des tests
+              run: vendor/bin/phpunit tests/Entity/TestAvantCodeTest.php
