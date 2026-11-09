@@ -10,3 +10,6 @@ scripts/buildapp.sh // Sur Linux
 
 .\scripts\buildapp.bat // Sur Windows
 ```
+
+# Statut Workflow
+![example workflow](https://github.com/Tritryi/projet_planningPoker/actions/workflows/ci.yaml/badge.svg)
