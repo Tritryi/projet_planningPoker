@@ -15,6 +15,12 @@ class Backlog
      * @var Fonctionnalite[]
      */
     public ?array $fonctionnalites = [];
+
+    public function __construct($nomProjet, array $fonctionnalites)
+    {
+        $this->nomProjet = $nomProjet;
+        $this->fonctionnalites = $fonctionnalites;
+    }
 /*
     public function getNomProjet(): ?string
     {

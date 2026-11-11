@@ -12,10 +12,16 @@ class Partie
     private array $joueurs = [];
     private array $taches;
 
+    public int $currentFuncIndex;
+    public int $currentTurn;
+    public string $regle;
+
     public function __construct(array $joueurs)
     {
         $this->joueurs = $joueurs;
         $this->taches = ["Connexion", "Inscription"];
+        $this->currentFuncIndex = 0;
+        $this->regle = "Stricte";
     }
 
     public function getJoueurs(): array
