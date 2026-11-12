@@ -21,6 +21,12 @@ Fichier d'instructions pour agent versionné (`CLAUDE.md`, `AGENTS.md`...) : <ou
 - **Ce que nous avons vérifié** : Vérification visuelle et bon fonctionnement des éventuels boutons
 - **Ce que nous avons changé ou rejeté, et pourquoi** : Rien, nous préferions nous concentrer sur l'écriture du backend et laisser le front à l'IA n'étant pas très doué pour les beaux visuels.
 
+### 2026-11-09
+- **Demande (résumé fidèle)** : Demande d'aide sur le ci.yaml, seule la partie installation de php a été demandé (ligne "uses : shivammathur/setup-php@v2"), le reste du fichier a été fait par nous.
+- **Résultat** : Modifié, la mauvaise version de php était proposée
+- **Ce que nous avons vérifié** : Vérification que le CI fonctionnait sur une branche de test.
+- **Ce que nous avons changé ou rejeté, et pourquoi** : Changement de la version php, les extensions et le coverage était bons.
+
 ## Bilan (à compléter en séance 4, 3 lignes)
 
 - Nombre d'entrées et de propositions rejetées ou corrigées :
