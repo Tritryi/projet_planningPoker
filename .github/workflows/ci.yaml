@@ -29,4 +29,4 @@ jobs:
 
             # lance les tests avec les commandes phpunit par défaut
             - name: Lancement des tests
-              run: vendor/bin/phpunit tests/Entity/TestAvantCodeTest.php
+              run: vendor/bin/phpunit tests/Controller/PartieControllerTest.php
