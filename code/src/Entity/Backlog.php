@@ -16,7 +16,7 @@ class Backlog
      */
     public ?array $fonctionnalites = [];
 
-    public function __construct($nomProjet, array $fonctionnalites)
+    public function __construct($nomProjet, $fonctionnalites)
     {
         $this->nomProjet = $nomProjet;
         $this->fonctionnalites = $fonctionnalites;
