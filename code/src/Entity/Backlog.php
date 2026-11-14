@@ -21,15 +21,22 @@ class Backlog
         $this->nomProjet = $nomProjet;
         $this->fonctionnalites = $fonctionnalites;
     }
-/*
+
     public function getNomProjet(): ?string
     {
         return $this->nomProjet;
     }
 
-    
+    public function setNomProjet(string $nomProjet): void
+    {
+        $this->nomProjet = $nomProjet;
+    }
     public function getFonctionnalites(): ?array
     {
         return $this->fonctionnalites;
-    }*/
+    }
+    public function setFonctionnalites(array $fonctionnalites): void
+    {
+        $this->fonctionnalites = $fonctionnalites;
+    }
 }

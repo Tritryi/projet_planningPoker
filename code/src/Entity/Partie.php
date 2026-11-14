@@ -10,11 +10,11 @@ class Partie
 {
 
     private array $joueurs = [];
-    public int $currentFuncIndex;
-    public int $currentTurn;
-    public string $regle;
+    private int $currentFuncIndex;
+    private int $currentTurn;
+    private string $regle;
 
-    public Backlog $backlog;
+    private Backlog $backlog;
 
     public function __construct(array $joueurs)
     {
@@ -33,8 +33,74 @@ class Partie
         $this->joueurs = $joueurs;
     }
 
+    public function getCurrentFuncIndex(): int
+    {
+        return $this->currentFuncIndex;
+    }
+
+    public function setCurrentFuncIndex(int $currentFuncIndex): void
+    {
+        $this->currentFuncIndex = $currentFuncIndex;
+    }
+
+    public function getCurrentTurn(): int
+    {
+        return $this->currentTurn;
+    }
+
+    public function setCurrentTurn(int $currentTurn): void
+    {
+        $this->currentTurn = $currentTurn;
+    }
+
+    public function getRegle(): string
+    {
+        return $this->regle;
+    }
+
+    public function setRegle(string $regle): void
+    {
+        $this->regle = $regle;
+    }
+
+    public function getBacklog(): Backlog
+    {
+        return $this->backlog;
+    }
+
     public function setBacklog(Backlog $backlog): void
     {
         $this->backlog = $backlog;
+    }
+
+    public function checKVoteStrict(array $scores): int
+    {
+        $value = $scores[0];
+        foreach ($scores as $s) {
+            if ($s != $value) {
+                return 0;
+            }
+        }
+        return $value;
+    }
+
+    public function checkVoteAbsolu(array $scores): int
+    {
+        $compta = [];
+        $totalVotes = sizeof($scores);
+        foreach ($scores as $s) {
+            if (!$compta[$s]){
+                $compta[$s] = 1;
+            }else{
+                $compta[$s]++;
+            }
+        }
+
+        foreach ($compta as $k => $v) {
+            if($v > $totalVotes/2){
+                return (int)$k;
+            }
+        }
+        return 0;
     }
 }
