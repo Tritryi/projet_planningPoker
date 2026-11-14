@@ -1,0 +1,132 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Planning Poker - Votes{% endblock %}
+
+{% block body %}
+<div class="poker-board">
+    <h2>Résultat du vote</h2>
+
+
+    <div class="cards-grid">
+        {% for playerName, vote in votes %}
+            {% set hasVoted = vote is not null and vote is not same as('') %}
+
+            <div class="player-slot">
+                <div class="poker-card is-revealed">
+                    <span class="card-value">{{ vote }}</span>
+                </div>
+                <span class="player-name">{{ playerName }}</span>
+            </div>
+        {% endfor %}
+    </div>
+
+    {# Summary section shown only when votes are revealed #}
+
+    {% set numericVotes = [] %}
+    {% for vote in votes %}
+        {# Filter out non-numeric cards like '?', '☕', or '∞' before calculating average #}
+        {% if vote is not null and vote matches '/^\\d+(\\.\\d+)?$/' %}
+            {% set numericVotes = numericVotes|merge([vote + 0]) %}
+        {% endif %}
+    {% endfor %}
+
+    <div class="vote-summary">
+        {% if numericVotes is not empty %}
+            {% set sum = 0 %}
+            {% for num in numericVotes %}
+                {% set sum = sum + num %}
+            {% endfor %}
+            {% set average = (sum / numericVotes|length)|round(1) %}
+
+            <p><strong>Average:</strong> {{ average }}</p>
+
+            {# Check if all numeric votes are identical #}
+            {% set firstVote = numericVotes|first %}
+            {% set isConsensus = true %}
+            {% for num in numericVotes %}
+                {% if num != firstVote %}
+                    {% set isConsensus = false %}
+                {% endif %}
+            {% endfor %}
+
+            {% if isConsensus and numericVotes|length == votes|length %}
+                <span class="badge-consensus">Consensus reached!</span>
+            {% endif %}
+        {% else %}
+            <p><em>No numeric votes to average.</em></p>
+        {% endif %}
+    </div>
+
+</div>
+
+<style>
+    .poker-board {
+        max-width: 800px;
+        margin: 2rem auto;
+        font-family: system-ui, -apple-system, sans-serif;
+        text-align: center;
+    }
+    .cards-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+        margin: 2rem 0;
+    }
+    .player-slot {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .poker-card {
+        width: 70px;
+        height: 100px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        border: 2px solid #cbd5e1;
+        transition: transform 0.2s ease;
+    }
+    .poker-card.is-revealed {
+        background-color: #ffffff;
+        border-color: #3b82f6;
+        color: #1e293b;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    .poker-card.is-hidden {
+        background-color: #3b82f6;
+        border-color: #2563eb;
+        color: #ffffff;
+    }
+    .poker-card.is-waiting {
+        background-color: #f8fafc;
+        border-style: dashed;
+        color: #94a3b8;
+    }
+    .player-name {
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: #334155;
+    }
+    .vote-summary {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        background: #f1f5f9;
+        border-radius: 8px;
+    }
+    .badge-consensus {
+        display: inline-block;
+        margin-top: 0.25rem;
+        padding: 0.25rem 0.75rem;
+        background: #dcfce7;
+        color: #166534;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 0.85rem;
+    }
+</style>
+{% endblock %}

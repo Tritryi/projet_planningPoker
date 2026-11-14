@@ -39,14 +39,26 @@
             </div>
         </section>
 
+        <form id="voteSubmit" action="{{ path('app_partie_voter') }}" method="POST">
+            <input type="hidden" name="votes" id="hvotes" />
+            <button type="submit">Afficher les résultats</button>
+        </form>
+
     </main>
     <script>
         // récupère les joueurs, de quoi stocker leur votes et les zones html
-        let indexJ = 0;
-        const votes = {};
-        const voteArea = document.getElementById("cartes-section");
-        const joueurs = JSON.parse(voteArea.dataset.joueurs);
-        const joueurActuel = document.querySelector('.joueur-actif');
+        indexJ = 0;
+        votes = {};
+        voteArea = document.getElementById("cartes-section");
+        joueurs = JSON.parse(voteArea.dataset.joueurs);
+        joueurActuel = document.querySelector('.joueur-actif');
+        voteForm = document.getElementById("voteSubmit");
+
+        voteForm.addEventListener("submit", () => {
+            document.getElementById("hvotes").value = JSON.stringify(votes);
+        });
+
+        voteForm.hidden = true;
 
         document.querySelectorAll(".carte").forEach(carte => {
             carte.addEventListener("click", (event) => {
@@ -65,6 +77,7 @@
                 else {
                     voteArea.style.display = "none";
                     console.log("Fin de la tâche X, votes enregistrés :", votes);
+                    voteForm.hidden = false;
                 }
             });
         });

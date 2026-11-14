@@ -65,6 +65,29 @@ final class PartieController extends AbstractController
         ]);
     }
 
+    #[Route('/partie/checkvote', name: 'app_partie_voter', methods: ['POST'])]
+    public function voter(Request $request): Response{
+        $votes = json_decode($request->request->get('votes'), true);
+        $p = $request->getSession()->get('partie');
+        $voteJ1 =  $votes[$p->getJoueurs()[0]];
+        
+        if(count($votes) == 0){
+            return $this->redirectToRoute('app_partie_jouer');
+        }
+
+        return $this->redirectToRoute('app_partie_resultatvote',[
+            'votes' => $votes,
+        ]);
+    }
+
+    #[Route('/partie/resultvote', name: 'app_partie_resultatvote')]
+    public function resultatvote(Request $request): Response{
+
+        return $this->render('default/voteresult.html.twig',[
+            'votes' => $request->query->all('votes'),
+        ]);
+    }
+
     private function checkBacklogValidity($backlog){
         if(!$backlog->nomProjet){
             return false;

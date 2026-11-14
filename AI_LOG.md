@@ -7,7 +7,7 @@
 
 | Outil  | Modèle (si connu) | Mode (autocomplétion, chat, agent) |
 |--------|---|------------------------------------|
-| Gemini | | Chat                               |
+| Gemini | 4 Hydrogen / 3.5 Flash-lite | Chat                               |
 
 Fichier d'instructions pour agent versionné (`CLAUDE.md`, `AGENTS.md`...) : <oui : chemin / non>
 
@@ -26,6 +26,12 @@ Fichier d'instructions pour agent versionné (`CLAUDE.md`, `AGENTS.md`...) : <ou
 - **Résultat** : Modifié, la mauvaise version de php était proposée
 - **Ce que nous avons vérifié** : Vérification que le CI fonctionnait sur une branche de test.
 - **Ce que nous avons changé ou rejeté, et pourquoi** : Changement de la version php, les extensions et le coverage était bons.
+
+### 2026-11-14
+- **Demande (résumé fidèle)** : US-01-02-03 :  Demande de génération de la page voteresult et d'aide pour l'envoi de l'objet JS votes, contexte fourni : le but de l'application pour qu'il adapte l'affichage de sortie et le nom de la variable en entrée de la page voteresult.
+- **Résultat** : Modifié, une partie du code proposée était redondante avec ce que nous avions fait précédemment + pour l'envoi des votes, juste la méthode JSON.stringify a été réutilisée.
+- **Ce que nous avons vérifié** : Vérification des visuels et qu'il n'y avait pas de perte de données au niveau de l'envoi / reception des votes.
+- **Ce que nous avons changé ou rejeté, et pourquoi** : Rejeté une partie du code qui proposait de refaire le vote des joueurs, car cela ne nous était plus utile. De plus, la partié résultat global sera mené a changer pour intégrer le reste des fonctionnalités. Pour l'envoi de données, rejeté le formulaire proposé. La méthode stringify suffisant pour corriger les problèmes rencontrés. 
 
 ## Bilan (à compléter en séance 4, 3 lignes)
 
