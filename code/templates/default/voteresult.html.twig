@@ -31,29 +31,12 @@
     {% endfor %}
 
     <div class="vote-summary">
-        {% if numericVotes is not empty %}
-            {% set sum = 0 %}
-            {% for num in numericVotes %}
-                {% set sum = sum + num %}
-            {% endfor %}
-            {% set average = (sum / numericVotes|length)|round(1) %}
-
-            <p><strong>Average:</strong> {{ average }}</p>
-
-            {# Check if all numeric votes are identical #}
-            {% set firstVote = numericVotes|first %}
-            {% set isConsensus = true %}
-            {% for num in numericVotes %}
-                {% if num != firstVote %}
-                    {% set isConsensus = false %}
-                {% endif %}
-            {% endfor %}
-
-            {% if isConsensus and numericVotes|length == votes|length %}
-                <span class="badge-consensus">Consensus reached!</span>
-            {% endif %}
+        {% if validite == 0 %}
+            <p>Aucun consensus atteint.</p>
+            <a href="{{ path('app_partie_jouer') }}" class="btn-suite">Passer au tour suivant</a>
         {% else %}
-            <p><em>No numeric votes to average.</em></p>
+            <p>Score validé : <strong>{{ validite }}</strong></p>
+            <a href="{{ path('app_partie_jouer') }}" class="btn-suite">Passer à la suite</a>
         {% endif %}
     </div>
 
@@ -127,6 +110,20 @@
         border-radius: 999px;
         font-weight: 600;
         font-size: 0.85rem;
+    }
+
+    .btn-suite {
+        display: inline-block;
+        margin-top: 0.5rem;
+        padding: 0.6rem 1.2rem;
+        background-color: #3b82f6;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+    .btn-suite:hover {
+        background-color: #2563eb;
     }
 </style>
 {% endblock %}

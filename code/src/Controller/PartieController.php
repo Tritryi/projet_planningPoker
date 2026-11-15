@@ -40,6 +40,7 @@ final class PartieController extends AbstractController
             $session->set('error', null);
 
             $p = new Partie($nomsJoueurs);
+            $p->setBacklog($backlog);
             $session->set('partie', $p);
 
             return $this->redirectToRoute('app_partie_jouer');
@@ -58,10 +59,12 @@ final class PartieController extends AbstractController
         if(!$p || !$b){
             return $this->redirectToRoute('app_accueil');
         }
+        $indexFonc = $p->getCurrentFuncIndex();
 
         return $this->render('default/partie.html.twig', [
             'joueurs' => $p->getJoueurs(),
             'backlog' => $b,
+            'indexFonc' => $indexFonc,
         ]);
     }
 
@@ -69,12 +72,14 @@ final class PartieController extends AbstractController
     public function voter(Request $request): Response{
         $votes = json_decode($request->request->get('votes'), true);
         $p = $request->getSession()->get('partie');
-        $voteJ1 =  $votes[$p->getJoueurs()[0]];
 
         if(count($votes) == 0){
             return $this->redirectToRoute('app_partie_jouer');
         }
 
+        $validite = $p->checkVoteStrict($votes);
+
+        $request->getSession()->set('validite', $validite);
         return $this->redirectToRoute('app_partie_resultatvote',[
             'votes' => $votes,
         ]);
@@ -82,9 +87,9 @@ final class PartieController extends AbstractController
 
     #[Route('/partie/resultvote', name: 'app_partie_resultatvote')]
     public function resultatvote(Request $request): Response{
-
         return $this->render('default/voteresult.html.twig',[
             'votes' => $request->query->all('votes'),
+            'validite' => $request->getSession()->get('validite'),
         ]);
     }
 

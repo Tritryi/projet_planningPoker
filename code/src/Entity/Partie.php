@@ -76,7 +76,7 @@ class Partie
 
     public function checKVoteStrict(array $scores): int
     {
-        $value = $scores[0];
+        $value = reset($scores);
         foreach ($scores as $s) {
             if ($s != $value) {
                 $this->setCurrentTurn($this->getCurrentTurn()+1);
