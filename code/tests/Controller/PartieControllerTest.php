@@ -49,9 +49,10 @@ final class PartieControllerTest extends WebTestCase
     {
         // Arrange
         $partie = new Partie(["Antoine", "Baptiste", "Céline"]); // currentFuncIndex initialisé à 0
-        $partie->currentTurn = 1;
-        $partie->regle = "Stricte";
+        $partie->setCurrentTurn(1);
+        $partie->setRegle("Stricte");
         $backlog = new Backlog("Projet", [new Fonctionnalite(1, "Première tâche"), new Fonctionnalite(2, "Deuxième tâche")]);
+        $partie->setBacklog($backlog);
         $votes = [3,5,5];
 
         // Act
@@ -59,18 +60,19 @@ final class PartieControllerTest extends WebTestCase
         $result = $partie->CheckVoteStrict($votes);
 
         // Assert
-        $this->assertSame($result, false);
-        $this->assertSame($partie->currentFuncIndex, 0);
-        $this->assertSame($partie->currentTurn, 2);
+        $this->assertSame($result, 0);
+        $this->assertSame($partie->getCurrentFuncIndex(), 0);
+        $this->assertSame($partie->getCurrentTurn(), 2);
     }
 
     public function test_CA_02_1_majorite_absolue_reussite_regle(): void
     {
         // Arrange
         $partie = new Partie(["Antoine", "Baptiste", "Céline"]); // currentFuncIndex initialisé à 0
-        $partie->currentTurn = 2;
-        $partie->regle = "Maj absolue";
+        $partie->setCurrentTurn(2);
+        $partie->setRegle("Maj absolue");
         $backlog = new Backlog("Projet", [new Fonctionnalite(1, "Première tâche"), new Fonctionnalite(2, "Deuxième tâche")]);
+        $partie->setBacklog($backlog);
         $votes = [3,5,5];
 
         // Act
@@ -78,18 +80,19 @@ final class PartieControllerTest extends WebTestCase
         $result = $partie->CheckVoteAbsolute($votes);
 
         // Assert
-        $this->assertSame($result, true);
-        $this->assertSame($partie->currentFuncIndex, 1);
-        $this->assertSame($backlog->fonctionnalites[0]->score, 5);
+        $this->assertSame($result, 5);
+        $this->assertSame($partie->getCurrentFuncIndex(), 1);
+        $this->assertSame($backlog->fonctionnalites[0]->getScore(), 5);
     }
 
     public function test_CA_03_1_majorite_absolue_echec_premier_tour(): void
     {
         // Arrange
         $partie = new Partie(["Antoine", "Baptiste", "Céline"]); // currentFuncIndex initialisé à 0
-        $partie->currentTurn = 1;
-        $partie->regle = "Maj absolue";
+        $partie->setCurrentTurn(1);
+        $partie->setRegle("Maj absolue");
         $backlog = new Backlog("Projet", [new Fonctionnalite(1, "Première tâche"), new Fonctionnalite(2, "Deuxième tâche")]);
+        $partie->setBacklog($backlog);
         $votes = [3,3,5];
 
         // Act
@@ -97,54 +100,56 @@ final class PartieControllerTest extends WebTestCase
         $result = $partie->CheckVoteStrict($votes);
 
         // Assert
-        $this->assertSame($result, false);
-        $this->assertSame($partie->currentFuncIndex, 0);
-        $this->assertSame($partie->currentTurn, 2);
+        $this->assertSame($result, 0);
+        $this->assertSame($partie->getCurrentFuncIndex(), 0);
+        $this->assertSame($partie->getCurrentTurn(), 2);
     }
 
     public function test_CA_02_3_majorite_absolue_echec_egalite() : void
     {
         $partie = new Partie(["Antoine", "Baptiste", "Céline", "Richard"]);
-        $partie->currentTurn = 2;
-        $partie->regle = "Maj absolue";
+        $partie->setCurrentTurn(2);
+        $partie->setRegle("Maj absolue");
         $backlog = new Backlog("Projet", [new Fonctionnalite(1, "Première tâche"), new Fonctionnalite(2, "Deuxième tâche")]);
+        $partie->setBacklog($backlog);
         $votes = [3,3,5,5];
 
         $result = $partie->checkVoteAbsolute($votes);
 
-        $this->assertSame($result, false);
-        $this->assertSame($partie->currentFuncIndex, 0);
-        $this->assertSame($partie->currentTurn, 3);
+        $this->assertSame($result, 0);
+        $this->assertSame($partie->getCurrentFuncIndex(), 0);
+        $this->assertSame($partie->getCurrentTurn(), 3);
     }
 
     public function test_CA_01_2_majorite_absolue_reussite_premier_tour() : void
     {
         $partie = new Partie(["Antoine", "Baptiste", "Céline"]);
-        $partie->currentTurn = 1;
-        $partie->regle = "Maj absolue";
+        $partie->setCurrentTurn(1);
+        $partie->setRegle("Maj absolue");
         $backlog = new Backlog("Projet", [new Fonctionnalite(1, "Première tâche"), new Fonctionnalite(2, "Deuxième tâche")]);
+        $partie->setBacklog($backlog);
         $votes = [3,3,3];
 
-        $result = $partie->checkVoteAbsolute($votes);
+        $result = $partie->checKVoteStrict($votes);
 
-        $this->assertSame($result, true);
-        $this->assertSame($partie->currentFuncIndex, 1);
-        $this->assertSame($backlog->fonctionnalites[0]->score, 3);
+        $this->assertSame($result, 3);
+        $this->assertSame($partie->getCurrentFuncIndex(), 1);
+        $this->assertSame($backlog->fonctionnalites[0]->getScore(), 3);
     }
 
     public function test_CA_02_2_majorite_absolue_echec_aucune_majorite() : void
     {
         $partie = new Partie(["Antoine", "Baptiste", "Céline"]);
-        $partie->currentTurn = 1;
-        $partie->regle = "Maj absolue";
+        $partie->setCurrentTurn(1);
+        $partie->setRegle("Maj absolue");
         $backlog = new Backlog("Projet", [new Fonctionnalite(1, "Première tâche"), new Fonctionnalite(2, "Deuxième tâche")]);
         $votes = [8,3,5];
 
         $result = $partie->checkVoteAbsolute($votes);
 
-        $this->assertSame($result, true);
-        $this->assertSame($partie->currentFuncIndex, 1);
-        $this->assertSame($partie->currentTurn, 2);
+        $this->assertSame($result, 0);
+        $this->assertSame($partie->getCurrentFuncIndex(), 0);
+        $this->assertSame($partie->getCurrentTurn(), 2);
     }
 
 
