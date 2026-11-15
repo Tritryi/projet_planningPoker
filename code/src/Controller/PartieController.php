@@ -32,7 +32,7 @@ final class PartieController extends AbstractController
                 $error = true;
             }
         } catch (\Throwable $th) {
-            $session->set('error', "Veuillez entrer un fichier JSON correct");
+            $session->set('error', "$th");
             $error = true;
         }
 
@@ -40,13 +40,15 @@ final class PartieController extends AbstractController
             $session->set('error', null);
 
             $p = new Partie($nomsJoueurs);
+            $p->setBacklog($backlog);
+            $p->setRegle("Stricte");
             $session->set('partie', $p);
 
             return $this->redirectToRoute('app_partie_jouer');
         }
         else
             return $this->redirectToRoute('app_accueil');
-        
+
     }
 
     #[Route('/partie/jouer',
@@ -55,24 +57,64 @@ final class PartieController extends AbstractController
         $p = $request->getSession()->get('partie');
         $b = $request->getSession()->get('backlog');
 
+        if($p->getCurrentFuncIndex() >= sizeof($b->getFonctionnalites())){
+            return $this->redirectToRoute('app_accueil');
+        }
+
         if(!$p || !$b){
             return $this->redirectToRoute('app_accueil');
         }
+        $indexFonc = $p->getCurrentFuncIndex();
+        $tour = $p->getCurrentTurn();
 
         return $this->render('default/partie.html.twig', [
             'joueurs' => $p->getJoueurs(),
             'backlog' => $b,
+            'indexFonc' => $indexFonc,
+            'tour' => $tour,
+        ]);
+    }
+
+    #[Route('/partie/checkvote', name: 'app_partie_voter', methods: ['POST'])]
+    public function voter(Request $request): Response{
+        $votes = json_decode($request->request->get('votes'), true);
+        $p = $request->getSession()->get('partie');
+
+        if(count($votes) == 0){
+            return $this->redirectToRoute('app_partie_jouer');
+        }
+
+        if($p->getCurrentTurn() == 1){
+            $validite = $p->checkVoteStrict($votes);
+        }else if($p->getRegle() == "Stricte"){
+            $validite = $p->checkVoteStrict($votes);
+        }else{
+            $validite = $p->checkVoteAbsolute($votes);
+        }
+
+
+        $request->getSession()->set('validite', $validite);
+        return $this->redirectToRoute('app_partie_resultatvote',[
+            'votes' => $votes,
+        ]);
+    }
+
+    #[Route('/partie/resultvote', name: 'app_partie_resultatvote')]
+    public function resultatvote(Request $request): Response{
+        return $this->render('default/voteresult.html.twig',[
+            'votes' => $request->query->all('votes'),
+            'validite' => $request->getSession()->get('validite'),
         ]);
     }
 
     private function checkBacklogValidity($backlog){
-        if(!$backlog->nomProjet){
+        if(!$backlog->getNomProjet()){
             return false;
         }
-        foreach ($backlog->fonctionnalites as $fonctionnalite) {
-            if($fonctionnalite->id == null)
+        foreach ($backlog->getFonctionnalites() as $fonctionnalite) {
+            if($fonctionnalite->getId() == null)
                 return false;
-            if($fonctionnalite->titre == null || $fonctionnalite->titre == "")
+            if($fonctionnalite->getTitre() == null || $fonctionnalite->getTitre() == "")
                 return false;
         }
             return true;
