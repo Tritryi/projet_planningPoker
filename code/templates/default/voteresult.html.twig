@@ -31,7 +31,7 @@
     {% endfor %}
 
     <div class="vote-summary">
-        {% if validite == 0 %}
+        {% if validite == -1 %}
             <p>Aucun consensus atteint.</p>
             <a href="{{ path('app_partie_jouer') }}" class="btn-suite">Passer au tour suivant</a>
         {% else %}

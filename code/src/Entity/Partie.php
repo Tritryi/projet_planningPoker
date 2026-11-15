@@ -80,7 +80,7 @@ class Partie
         foreach ($scores as $s) {
             if ($s != $value) {
                 $this->setCurrentTurn($this->getCurrentTurn()+1);
-                return 0;
+                return -1;
             }
         }
         $fct = $this->getBacklog()->getFonctionnalite($this->getCurrentFuncIndex());
@@ -110,6 +110,6 @@ class Partie
             }
         }
         $this->setCurrentTurn($this->getCurrentTurn()+1);
-        return 0;
+        return -1;
     }
 }

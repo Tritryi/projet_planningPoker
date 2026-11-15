@@ -60,7 +60,7 @@ final class PartieControllerTest extends WebTestCase
         $result = $partie->CheckVoteStrict($votes);
 
         // Assert
-        $this->assertSame($result, 0);
+        $this->assertSame($result, -1);
         $this->assertSame($partie->getCurrentFuncIndex(), 0);
         $this->assertSame($partie->getCurrentTurn(), 2);
     }
@@ -100,7 +100,7 @@ final class PartieControllerTest extends WebTestCase
         $result = $partie->CheckVoteStrict($votes);
 
         // Assert
-        $this->assertSame($result, 0);
+        $this->assertSame($result, -1);
         $this->assertSame($partie->getCurrentFuncIndex(), 0);
         $this->assertSame($partie->getCurrentTurn(), 2);
     }
@@ -116,7 +116,7 @@ final class PartieControllerTest extends WebTestCase
 
         $result = $partie->checkVoteAbsolute($votes);
 
-        $this->assertSame($result, 0);
+        $this->assertSame($result, -1);
         $this->assertSame($partie->getCurrentFuncIndex(), 0);
         $this->assertSame($partie->getCurrentTurn(), 3);
     }
@@ -147,7 +147,7 @@ final class PartieControllerTest extends WebTestCase
 
         $result = $partie->checkVoteAbsolute($votes);
 
-        $this->assertSame($result, 0);
+        $this->assertSame($result, -1);
         $this->assertSame($partie->getCurrentFuncIndex(), 0);
         $this->assertSame($partie->getCurrentTurn(), 2);
     }

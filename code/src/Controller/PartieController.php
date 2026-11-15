@@ -87,7 +87,7 @@ final class PartieController extends AbstractController
         if($p->getCurrentTurn() == 1){
             $validite = $p->checkVoteStrict($votes);
         }else if($p->getRegle() == "Stricte"){
-            $validite = $p->checkVoteAbsolute($votes);
+            $validite = $p->checkVoteStrict($votes);
         }else{
             $validite = $p->checkVoteAbsolute($votes);
         }
