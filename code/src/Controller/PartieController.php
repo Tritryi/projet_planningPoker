@@ -57,6 +57,10 @@ final class PartieController extends AbstractController
         $p = $request->getSession()->get('partie');
         $b = $request->getSession()->get('backlog');
 
+        if($p->getCurrentFuncIndex() >= sizeof($b->getFonctionnalites())){
+            return $this->redirectToRoute('app_accueil');
+        }
+
         if(!$p || !$b){
             return $this->redirectToRoute('app_accueil');
         }
