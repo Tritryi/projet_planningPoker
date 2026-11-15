@@ -2,7 +2,7 @@ name: ci
 on:
     # définition des actions qui trigger les tests et les branches associées
     push:
-        branches: [main, test]
+        branches: [main, test, us-01-02-03-mode-de-jeu]
     pull_request:
         branches: [main]
 # permissions nécessaires de l'utilisateur pour déclencher des tests
