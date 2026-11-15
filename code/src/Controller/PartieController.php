@@ -60,11 +60,13 @@ final class PartieController extends AbstractController
             return $this->redirectToRoute('app_accueil');
         }
         $indexFonc = $p->getCurrentFuncIndex();
+        $tour = $p->getCurrentTurn();
 
         return $this->render('default/partie.html.twig', [
             'joueurs' => $p->getJoueurs(),
             'backlog' => $b,
             'indexFonc' => $indexFonc,
+            'tour' => $tour,
         ]);
     }
 
