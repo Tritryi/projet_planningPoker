@@ -94,7 +94,7 @@ class Partie
         $compta = [];
         $totalVotes = sizeof($scores);
         foreach ($scores as $s) {
-            if (!$compta[$s]){
+            if (!isset($compta[$s])){
                 $compta[$s] = 1;
             }else{
                 $compta[$s]++;
