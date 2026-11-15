@@ -31,9 +31,9 @@ class Backlog
     {
         $this->nomProjet = $nomProjet;
     }
-    public function getFonctionnalites(): ?array
+    public function getFonctionnalite(int $index): Fonctionnalite
     {
-        return $this->fonctionnalites;
+        return $this->fonctionnalites[$index];
     }
     public function setFonctionnalites(array $fonctionnalites): void
     {

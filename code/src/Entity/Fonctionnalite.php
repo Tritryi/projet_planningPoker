@@ -42,4 +42,9 @@ class Fonctionnalite
     {
         return $this->score;
     }
+
+    public function setScore(int $score): void
+    {
+        $this->score = $score;
+    }
 }
