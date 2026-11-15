@@ -41,6 +41,7 @@ final class PartieController extends AbstractController
 
             $p = new Partie($nomsJoueurs);
             $p->setBacklog($backlog);
+            $p->setRegle("Stricte");
             $session->set('partie', $p);
 
             return $this->redirectToRoute('app_partie_jouer');
@@ -79,7 +80,14 @@ final class PartieController extends AbstractController
             return $this->redirectToRoute('app_partie_jouer');
         }
 
-        $validite = $p->checkVoteStrict($votes);
+        if($p->getCurrentTurn() == 1){
+            $validite = $p->checkVoteStrict($votes);
+        }else if($p->getRegle() == "Stricte"){
+            $validite = $p->checkVoteAbsolute($votes);
+        }else{
+            $validite = $p->checkVoteAbsolute($votes);
+        }
+
 
         $request->getSession()->set('validite', $validite);
         return $this->redirectToRoute('app_partie_resultatvote',[
