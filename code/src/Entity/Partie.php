@@ -20,6 +20,7 @@ class Partie
     {
         $this->joueurs = $joueurs;
         $this->currentFuncIndex = 0;
+        $this->currentTurn = 1;
         $this->regle = "Stricte";
     }
 
@@ -78,13 +79,17 @@ class Partie
         $value = $scores[0];
         foreach ($scores as $s) {
             if ($s != $value) {
+                $this->setCurrentTurn($this->getCurrentTurn()+1);
                 return 0;
             }
         }
+        $fct = $this->getBacklog()->getFonctionnalite($this->getCurrentFuncIndex());
+        $fct->setScore($value);
+        $this->setCurrentFuncIndex($this->getCurrentFuncIndex()+1);
         return $value;
     }
 
-    public function checkVoteAbsolu(array $scores): int
+    public function checkVoteAbsolute(array $scores): int
     {
         $compta = [];
         $totalVotes = sizeof($scores);
@@ -98,9 +103,13 @@ class Partie
 
         foreach ($compta as $k => $v) {
             if($v > $totalVotes/2){
+                $fct = $this->getBacklog()->getFonctionnalite($this->getCurrentFuncIndex());
+                $fct->setScore($k);
+                $this->setCurrentFuncIndex($this->getCurrentFuncIndex()+1);
                 return (int)$k;
             }
         }
+        $this->setCurrentTurn($this->getCurrentTurn()+1);
         return 0;
     }
 }
