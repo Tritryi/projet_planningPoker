@@ -32,7 +32,7 @@ final class PartieController extends AbstractController
                 $error = true;
             }
         } catch (\Throwable $th) {
-            $session->set('error', "Veuillez entrer un fichier JSON correct");
+            $session->set('error', "$th");
             $error = true;
         }
 
@@ -46,7 +46,7 @@ final class PartieController extends AbstractController
         }
         else
             return $this->redirectToRoute('app_accueil');
-        
+
     }
 
     #[Route('/partie/jouer',
@@ -70,7 +70,7 @@ final class PartieController extends AbstractController
         $votes = json_decode($request->request->get('votes'), true);
         $p = $request->getSession()->get('partie');
         $voteJ1 =  $votes[$p->getJoueurs()[0]];
-        
+
         if(count($votes) == 0){
             return $this->redirectToRoute('app_partie_jouer');
         }
@@ -89,13 +89,13 @@ final class PartieController extends AbstractController
     }
 
     private function checkBacklogValidity($backlog){
-        if(!$backlog->nomProjet){
+        if(!$backlog->getNomProjet()){
             return false;
         }
-        foreach ($backlog->fonctionnalites as $fonctionnalite) {
-            if($fonctionnalite->id == null)
+        foreach ($backlog->getFonctionnalites() as $fonctionnalite) {
+            if($fonctionnalite->getId() == null)
                 return false;
-            if($fonctionnalite->titre == null || $fonctionnalite->titre == "")
+            if($fonctionnalite->getTitre() == null || $fonctionnalite->getTitre() == "")
                 return false;
         }
             return true;

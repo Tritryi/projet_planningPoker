@@ -35,6 +35,11 @@ class Backlog
     {
         return $this->fonctionnalites[$index];
     }
+
+    public function getFonctionnalites(): array
+    {
+        return $this->fonctionnalites;
+    }
     public function setFonctionnalites(array $fonctionnalites): void
     {
         $this->fonctionnalites = $fonctionnalites;
