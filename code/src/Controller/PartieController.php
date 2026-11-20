@@ -58,7 +58,7 @@ final class PartieController extends AbstractController
         $b = $request->getSession()->get('backlog');
 
         if($p->getCurrentFuncIndex() >= sizeof($b->getFonctionnalites())){
-            return $this->redirectToRoute('app_accueil');
+            return $this->redirectToRoute('app_partie_recap');
         }
 
         if(!$p || !$b){
@@ -104,6 +104,16 @@ final class PartieController extends AbstractController
         return $this->render('default/voteresult.html.twig',[
             'votes' => $request->query->all('votes'),
             'validite' => $request->getSession()->get('validite'),
+        ]);
+    }
+
+    #[Route('/partie/recap', name: 'app_partie_recap')]
+    public function recap(Request $request): Response
+    {
+        $p = $request->getSession()->get('partie');
+
+        return $this->render('default/recap.html.twig', [
+            'partie' => $p,
         ]);
     }
 
