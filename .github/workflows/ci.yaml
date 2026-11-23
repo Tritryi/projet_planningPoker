@@ -31,14 +31,14 @@ jobs:
             - name: Generer doc
               uses: docker://phpdoc/phpdoc:3
               with:
-                  args: -d code/src/Entity -t code/docs/
+                  args: -d code/src/Entity -t docs/
 
             # utilisation de skip ci obligatoire pour que github ne re-déclenche pas la ci lors du push de la doc
             - name: Push nouvelle doc
               run: |
                   git config --global user.email "github-actions[bot]@users.noreply.github.com"
                   git config --global user.name "github-actions[bot]"
-                  git add docs/
+                  git add ../docs/
                   if ! git diff --staged --quiet; then
                     git commit -m "doc: màj de la doc [skip ci]"
                     git push
