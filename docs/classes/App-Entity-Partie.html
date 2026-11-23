@@ -125,12 +125,17 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="code/src/Entity/Partie.php"><a href="files/code-src-entity-partie.html"><abbr title="code/src/Entity/Partie.php">Partie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">8</span>
+    <span class="phpdocumentor-element-found-in__line">14</span>
 
     </aside>
 
-        
+            <p class="phpdocumentor-summary">Représente l&#039;objet central de l&#039;application : une partie.</p>
 
+
+    <section class="phpdocumentor-description"><p>Permet de garder en mémoire les joueurs, les fonctions traitées du backlog, la règle choisie par le joueur et le backlog chargé.
+Encapsule à la fois les paramètres de la partie mais également le backlog et les fonctionnalités traitées et permet de réaliser des
+actions comme vérifier la validité des votes ou suivre le cours de la partie.</p>
+</section>
 
 
 
@@ -219,13 +224,16 @@
     <span>
                                 &nbsp;: int    </span>
 </dt>
+<dd>Détermine si un tour en majorité absolue est valide ou non (s&#039;applique si tour != 1 et regle=&quot;majoriteAbsolue&quot;)
+     - si -1 alors invalide (Lignes 3, 7 et 8)
+     - autre valeur : valide, la valeur retournée est le score attribué à la fonctionnalité (Lignes 4, 5 et 6)</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/App-Entity-Partie.html#method_checKVoteStrict">checKVoteStrict()</a>
     <span>
                                 &nbsp;: int    </span>
 </dt>
-<dd>Utilisé lors du premier tour et en vote strict pour vérifier qu&#039;une fonctionnalité est validable</dd>
+<dd>Détermine si un tour en règle stricte est valide ou non.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/App-Entity-Partie.html#method_getBacklog">getBacklog()</a>
@@ -317,7 +325,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="code/src/Entity/Partie.php"><a href="files/code-src-entity-partie.html"><abbr title="code/src/Entity/Partie.php">Partie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">24</span>
 
     </aside>
 
@@ -354,7 +362,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="code/src/Entity/Partie.php"><a href="files/code-src-entity-partie.html"><abbr title="code/src/Entity/Partie.php">Partie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">13</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
@@ -391,7 +399,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="code/src/Entity/Partie.php"><a href="files/code-src-entity-partie.html"><abbr title="code/src/Entity/Partie.php">Partie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">14</span>
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
@@ -428,7 +436,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="code/src/Entity/Partie.php"><a href="files/code-src-entity-partie.html"><abbr title="code/src/Entity/Partie.php">Partie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">12</span>
+    <span class="phpdocumentor-element-found-in__line">19</span>
 
     </aside>
 
@@ -465,7 +473,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="code/src/Entity/Partie.php"><a href="files/code-src-entity-partie.html"><abbr title="code/src/Entity/Partie.php">Partie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">15</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
@@ -507,7 +515,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="code/src/Entity/Partie.php"><a href="files/code-src-entity-partie.html"><abbr title="code/src/Entity/Partie.php">Partie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">22</span>
+    <span class="phpdocumentor-element-found-in__line">26</span>
 
     </aside>
 
@@ -551,11 +559,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="code/src/Entity/Partie.php"><a href="files/code-src-entity-partie.html"><abbr title="code/src/Entity/Partie.php">Partie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">100</span>
+    <span class="phpdocumentor-element-found-in__line">122</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Détermine si un tour en majorité absolue est valide ou non (s&#039;applique si tour != 1 et regle=&quot;majoriteAbsolue&quot;)
+     - si -1 alors invalide (Lignes 3, 7 et 8)
+     - autre valeur : valide, la valeur retournée est le score attribué à la fonctionnalité (Lignes 4, 5 et 6)</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">checkVoteAbsolute</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$scores</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
@@ -563,7 +574,12 @@
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>On parcourt les scores et créé un dictionnaire clé-&gt;valeur où la clé est le score attribué et valeur est le nombre de votes en faveur
+de cette valeur.
+Ensuite, on parcourt ce dictionnaire et on regarde pour chaque valeur si elle est supérieure à la 50% des votes, auquel cas la fonctionnalité
+prend cette valeur que l'on retourne. Sinon, on retourne -1 et incrémente les tours.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -599,11 +615,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="code/src/Entity/Partie.php"><a href="files/code-src-entity-partie.html"><abbr title="code/src/Entity/Partie.php">Partie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">85</span>
+    <span class="phpdocumentor-element-found-in__line">94</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Utilisé lors du premier tour et en vote strict pour vérifier qu&#039;une fonctionnalité est validable</p>
+        <p class="phpdocumentor-summary">Détermine si un tour en règle stricte est valide ou non.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -612,7 +628,17 @@
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><ul>
+<li>si -1 alors invalide (Ligne 1)
+<ul>
+<li>autre valeur : valide, la valeur retournée est le score attribué à la fonctionnalité (Ligne 2)</li>
+</ul>
+</li>
+</ul>
+<p>Parcours la liste des votes entrés, si une seule valeur diffère des autres, on incrémente les tours et on retourne une invalidité.
+Sinon, on entre l'estimation de la fonctionnalité et on incrémente l'index de la fonctionnalité traitée.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -648,7 +674,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="code/src/Entity/Partie.php"><a href="files/code-src-entity-partie.html"><abbr title="code/src/Entity/Partie.php">Partie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">70</span>
+    <span class="phpdocumentor-element-found-in__line">74</span>
 
     </aside>
 
@@ -686,7 +712,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="code/src/Entity/Partie.php"><a href="files/code-src-entity-partie.html"><abbr title="code/src/Entity/Partie.php">Partie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">40</span>
+    <span class="phpdocumentor-element-found-in__line">44</span>
 
     </aside>
 
@@ -724,7 +750,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="code/src/Entity/Partie.php"><a href="files/code-src-entity-partie.html"><abbr title="code/src/Entity/Partie.php">Partie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">54</span>
 
     </aside>
 
@@ -762,7 +788,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="code/src/Entity/Partie.php"><a href="files/code-src-entity-partie.html"><abbr title="code/src/Entity/Partie.php">Partie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
@@ -800,7 +826,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="code/src/Entity/Partie.php"><a href="files/code-src-entity-partie.html"><abbr title="code/src/Entity/Partie.php">Partie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">60</span>
+    <span class="phpdocumentor-element-found-in__line">64</span>
 
     </aside>
 
@@ -838,7 +864,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="code/src/Entity/Partie.php"><a href="files/code-src-entity-partie.html"><abbr title="code/src/Entity/Partie.php">Partie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">75</span>
+    <span class="phpdocumentor-element-found-in__line">79</span>
 
     </aside>
 
@@ -882,7 +908,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="code/src/Entity/Partie.php"><a href="files/code-src-entity-partie.html"><abbr title="code/src/Entity/Partie.php">Partie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">45</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
@@ -926,7 +952,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="code/src/Entity/Partie.php"><a href="files/code-src-entity-partie.html"><abbr title="code/src/Entity/Partie.php">Partie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">55</span>
+    <span class="phpdocumentor-element-found-in__line">59</span>
 
     </aside>
 
@@ -970,7 +996,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="code/src/Entity/Partie.php"><a href="files/code-src-entity-partie.html"><abbr title="code/src/Entity/Partie.php">Partie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">35</span>
+    <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
@@ -1014,7 +1040,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="code/src/Entity/Partie.php"><a href="files/code-src-entity-partie.html"><abbr title="code/src/Entity/Partie.php">Partie.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">65</span>
+    <span class="phpdocumentor-element-found-in__line">69</span>
 
     </aside>
 

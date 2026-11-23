@@ -148,7 +148,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Entity\\Partie",
             "name": "Partie",
-            "summary": "",
+            "summary": "Repr\u00E9sente\u0020l\u0027objet\u0020central\u0020de\u0020l\u0027application\u0020\u003A\u0020une\u0020partie.",
             "url": "classes/App-Entity-Partie.html"
         },                {
             "fqsen": "\\App\\Entity\\Partie\u003A\u003A__construct\u0028\u0029",
@@ -208,12 +208,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Entity\\Partie\u003A\u003AchecKVoteStrict\u0028\u0029",
             "name": "checKVoteStrict",
-            "summary": "Utilis\u00E9\u0020lors\u0020du\u0020premier\u0020tour\u0020et\u0020en\u0020vote\u0020strict\u0020pour\u0020v\u00E9rifier\u0020qu\u0027une\u0020fonctionnalit\u00E9\u0020est\u0020validable",
+            "summary": "D\u00E9termine\u0020si\u0020un\u0020tour\u0020en\u0020r\u00E8gle\u0020stricte\u0020est\u0020valide\u0020ou\u0020non.",
             "url": "classes/App-Entity-Partie.html#method_checKVoteStrict"
         },                {
             "fqsen": "\\App\\Entity\\Partie\u003A\u003AcheckVoteAbsolute\u0028\u0029",
             "name": "checkVoteAbsolute",
-            "summary": "",
+            "summary": "D\u00E9termine\u0020si\u0020un\u0020tour\u0020en\u0020majorit\u00E9\u0020absolue\u0020est\u0020valide\u0020ou\u0020non\u0020\u0028s\u0027applique\u0020si\u0020tour\u0020\u0021\u003D\u00201\u0020et\u0020regle\u003D\u0022majoriteAbsolue\u0022\u0029\n\u0020\u0020\u0020\u0020\u0020\u002D\u0020si\u0020\u002D1\u0020alors\u0020invalide\u0020\u0028Lignes\u00203,\u00207\u0020et\u00208\u0029\n\u0020\u0020\u0020\u0020\u0020\u002D\u0020autre\u0020valeur\u0020\u003A\u0020valide,\u0020la\u0020valeur\u0020retourn\u00E9e\u0020est\u0020le\u0020score\u0020attribu\u00E9\u0020\u00E0\u0020la\u0020fonctionnalit\u00E9\u0020\u0028Lignes\u00204,\u00205\u0020et\u00206\u0029",
             "url": "classes/App-Entity-Partie.html#method_checkVoteAbsolute"
         },                {
             "fqsen": "\\App\\Entity\\Partie\u003A\u003A\u0024joueurs",
