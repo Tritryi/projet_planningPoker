@@ -7,7 +7,7 @@ on:
         branches: [main]
 # permissions nécessaires de l'utilisateur pour déclencher des tests
 permissions:
-    contents: read
+    contents: write
 jobs:
     test:
         runs-on: ubuntu-latest
