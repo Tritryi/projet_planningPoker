@@ -29,18 +29,18 @@ jobs:
 
             # utilisation de phpdocumentor pour la doc, trouvé sur le repo officiel
             - name: Generer doc
-              uses: phpDocumentor/phpDocumentor@master
+              uses: docker://phpdoc/phpdoc:3
               with:
-                  args: -d src/Entity build/docs
+                  args: -d src/Entity -t docs/
 
-
+            # utilisation de skip ci obligatoire pour que github ne re-déclenche pas la ci lors du push de la doc
             - name: Push nouvelle doc
               run: |
                   git config --global user.email "github-actions[bot]@users.noreply.github.com"
                   git config --global user.name "github-actions[bot]"
                   git add docs/api
                   if ! git diff --staged --quiet; then
-                    git commit -m "doc: màj de la doc"
+                    git commit -m "doc: màj de la doc [skip ci]"
                     git push
                   fi
 
