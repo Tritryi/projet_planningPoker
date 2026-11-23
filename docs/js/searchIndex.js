@@ -1,6 +1,51 @@
 Search.appendIndex(
     [
                 {
+            "fqsen": "\\App\\Controller\\DefaultController",
+            "name": "DefaultController",
+            "summary": "",
+            "url": "classes/App-Controller-DefaultController.html"
+        },                {
+            "fqsen": "\\App\\Controller\\DefaultController\u003A\u003Aindex\u0028\u0029",
+            "name": "index",
+            "summary": "",
+            "url": "classes/App-Controller-DefaultController.html#method_index"
+        },                {
+            "fqsen": "\\App\\Controller\\PartieController",
+            "name": "PartieController",
+            "summary": "",
+            "url": "classes/App-Controller-PartieController.html"
+        },                {
+            "fqsen": "\\App\\Controller\\PartieController\u003A\u003Apartie\u0028\u0029",
+            "name": "partie",
+            "summary": "",
+            "url": "classes/App-Controller-PartieController.html#method_partie"
+        },                {
+            "fqsen": "\\App\\Controller\\PartieController\u003A\u003Ajouer\u0028\u0029",
+            "name": "jouer",
+            "summary": "",
+            "url": "classes/App-Controller-PartieController.html#method_jouer"
+        },                {
+            "fqsen": "\\App\\Controller\\PartieController\u003A\u003Avoter\u0028\u0029",
+            "name": "voter",
+            "summary": "",
+            "url": "classes/App-Controller-PartieController.html#method_voter"
+        },                {
+            "fqsen": "\\App\\Controller\\PartieController\u003A\u003Aresultatvote\u0028\u0029",
+            "name": "resultatvote",
+            "summary": "",
+            "url": "classes/App-Controller-PartieController.html#method_resultatvote"
+        },                {
+            "fqsen": "\\App\\Controller\\PartieController\u003A\u003Arecap\u0028\u0029",
+            "name": "recap",
+            "summary": "",
+            "url": "classes/App-Controller-PartieController.html#method_recap"
+        },                {
+            "fqsen": "\\App\\Controller\\PartieController\u003A\u003AcheckBacklogValidity\u0028\u0029",
+            "name": "checkBacklogValidity",
+            "summary": "",
+            "url": "classes/App-Controller-PartieController.html#method_checkBacklogValidity"
+        },                {
             "fqsen": "\\App\\Entity\\Backlog",
             "name": "Backlog",
             "summary": "",
@@ -201,14 +246,19 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/default.html"
         },                {
-            "fqsen": "\\App\\Entity",
-            "name": "Entity",
+            "fqsen": "\\App\\Controller",
+            "name": "Controller",
             "summary": "",
-            "url": "namespaces/app-entity.html"
+            "url": "namespaces/app-controller.html"
         },                {
             "fqsen": "\\App",
             "name": "App",
             "summary": "",
             "url": "namespaces/app.html"
+        },                {
+            "fqsen": "\\App\\Entity",
+            "name": "Entity",
+            "summary": "",
+            "url": "namespaces/app-entity.html"
         }            ]
 );
