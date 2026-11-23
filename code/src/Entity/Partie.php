@@ -74,6 +74,11 @@ class Partie
         $this->backlog = $backlog;
     }
 
+    /**
+     * Utilisé lors du premier tour et en vote strict pour vérifier qu'une fonctionnalité est validable
+     * @param array $scores
+     * @return int
+     */
     public function checKVoteStrict(array $scores): int
     {
         $value = reset($scores);

@@ -2,7 +2,7 @@ name: ci
 on:
     # définition des actions qui trigger les tests et les branches associées
     push:
-        branches: [main, test, us-01-02-03-mode-de-jeu]
+        branches: [main, test]
     pull_request:
         branches: [main]
 # permissions nécessaires de l'utilisateur pour déclencher des tests
@@ -27,6 +27,23 @@ jobs:
             # installe les package nécessaires pour un projet symfony, installe des version light et sans interaction utilisateur
             - run: composer install --prefer-dist --no-progress --no-interaction
 
+            # utilisation de phpdocumentor pour la doc, trouvé sur le repo officiel
+            - name: Generer doc
+              uses: phpDocumentor/phpDocumentor@master
+              with:
+                  args: -d src/Entity build/docs
+
+
+            - name: Push nouvelle doc
+              run: |
+                  git config --global user.email "github-actions[bot]@users.noreply.github.com"
+                  git config --global user.name "github-actions[bot]"
+                  git add docs/api
+                  if ! git diff --staged --quiet; then
+                    git commit -m "doc: màj de la doc"
+                    git push
+                  fi
+
             # lance les tests avec les commandes phpunit par défaut
             - name: Lancement des tests
-              run: vendor/bin/phpunit tests/Controller/PartieControllerTest.php
+              run: vendor/bin/phpunit tests/Entity/TestAvantCodeTest.php
