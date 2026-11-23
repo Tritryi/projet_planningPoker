@@ -16,6 +16,9 @@ class Partie
 
     private Backlog $backlog;
 
+    /**
+     * @param array $joueurs
+     */
     public function __construct(array $joueurs)
     {
         $this->joueurs = $joueurs;
