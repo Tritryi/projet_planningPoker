@@ -48,3 +48,4 @@ Parmi la programmation par paires, les tests écrits avant le code, l'intégrati
 
 # 4. Liens
 Lien du run pour la documentation : [Run documentation](https://github.com/Tritryi/projet_planningPoker/actions/runs/45255231572)
+Visualiser la documentation avec pages : [à cette adresse](https://tritryi.github.io/projet_planningPoker/)
