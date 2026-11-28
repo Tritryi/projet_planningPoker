@@ -42,6 +42,10 @@
             </tfoot>
         </table>
     </div>
+
+    <form action="{{ path('app_partie_savebacklog') }}" method="get" data-turbo="false">
+        <button type="submit" class="btn btn-primary">Sauvegarder Backlog</button>
+    </form>
 </div>
 
 <style>

@@ -33,6 +33,13 @@ Fichier d'instructions pour agent versionné (`CLAUDE.md`, `AGENTS.md`...) : <ou
 - **Ce que nous avons vérifié** : Vérification des visuels et qu'il n'y avait pas de perte de données au niveau de l'envoi / reception des votes.
 - **Ce que nous avons changé ou rejeté, et pourquoi** : Rejeté une partie du code qui proposait de refaire le vote des joueurs, car cela ne nous était plus utile. De plus, la partié résultat global sera mené a changer pour intégrer le reste des fonctionnalités. Pour l'envoi de données, rejeté le formulaire proposé. La méthode stringify suffisant pour corriger les problèmes rencontrés. 
 
+
+### 2026-11-24
+- **Demande (résumé fidèle)** : US-01-02-03 :  Troubleshooting sur le formulaire de téléchargement du JSON de la page recap.
+- **Résultat** : Le problème venait de l'utilisation d'un add on de Symfony, UX Turbo, qui modifie le fonctionnement des forms html. 
+- **Ce que nous avons vérifié** : Vérification dans la doc de Symfony du comportement de l'add on + fonctionnement de la modification.
+- **Ce que nous avons changé ou rejeté, et pourquoi** : Accepté. Pour corriger le problème, il fallait ajouter un tag dans le form pour permettre à la requête de s'exécuter.
+
 ## Bilan (à compléter en séance 4, 3 lignes)
 
 - Nombre d'entrées et de propositions rejetées ou corrigées :

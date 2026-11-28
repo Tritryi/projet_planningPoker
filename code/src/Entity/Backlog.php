@@ -11,6 +11,9 @@ class Backlog
 {
     public ?string $nomProjet = null;
 
+    /**
+     * @var Fonctionnalite[]
+     */
     public ?array $fonctionnalites = [];
 
     public function __construct($nomProjet, $fonctionnalites)

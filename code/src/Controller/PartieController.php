@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,6 +11,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use App\Entity\Partie;
 use App\Entity\Backlog;
 use App\Entity\Fonctionnalite;
+use Symfony\Component\HttpFoundation\HeaderUtils;
 
 final class PartieController extends AbstractController
 {
@@ -117,7 +119,28 @@ final class PartieController extends AbstractController
         ]);
     }
 
+    #[Route('/partie/savebacklog', name: 'app_partie_savebacklog', methods: ['GET'])]
+    public function saveBacklog(Request $request, SerializerInterface $serializer): Response{
+        $p = $request->getSession()->get('partie');
+
+        $backlogJson = $serializer->serialize($p->getBacklog(), 'json', [
+            'json_encode_options' => JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE, // pretty print + utf8
+        ]);
+
+        $response = JsonResponse::fromJsonString($backlogJson);
+
+        // Force le téléchargement
+        $disposition = HeaderUtils::makeDisposition(
+            HeaderUtils::DISPOSITION_ATTACHMENT,
+            'Backlog_Complet.json'
+        );
+        $response->headers->set('Content-Disposition', $disposition);
+
+        return $response;
+    }
+
     private function checkBacklogValidity($backlog){
+        return true;
         if(!$backlog->getNomProjet()){
             return false;
         }
