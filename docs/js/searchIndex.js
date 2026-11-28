@@ -41,6 +41,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-PartieController.html#method_recap"
         },                {
+            "fqsen": "\\App\\Controller\\PartieController\u003A\u003AsaveBacklog\u0028\u0029",
+            "name": "saveBacklog",
+            "summary": "",
+            "url": "classes/App-Controller-PartieController.html#method_saveBacklog"
+        },                {
             "fqsen": "\\App\\Controller\\PartieController\u003A\u003AcheckBacklogValidity\u0028\u0029",
             "name": "checkBacklogValidity",
             "summary": "",
